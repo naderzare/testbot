@@ -49,6 +49,7 @@
             log('Sending data: ' + JSON.stringify(data));
             Telegram.WebApp.sendData(JSON.stringify(data));
         }
+        log('go to ready')
         Telegram.WebApp.ready();
         log('Web App Ready');
     </script>
