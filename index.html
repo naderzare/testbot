@@ -31,6 +31,7 @@
     <script>
         function startGame() {
             const data = { action: 'start_game' };
+            console.log('Sending data:', data);  // Add this line to debug
             Telegram.WebApp.sendData(JSON.stringify(data));
         }
         Telegram.WebApp.ready();
