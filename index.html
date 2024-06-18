@@ -22,19 +22,35 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+        #log {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 90%;
+            max-width: 600px;
+            overflow-y: auto;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
     <img src="https://via.placeholder.com/300" alt="Sample Image">
     <button onclick="startGame()">Start Game</button>
+    <div id="log"></div>
 
     <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += message + '<br>';
+        }
+
         function startGame() {
             const data = { action: 'start_game' };
-            console.log('Sending data:', data);  // Add this line to debug
+            log('Sending data: ' + JSON.stringify(data));
             Telegram.WebApp.sendData(JSON.stringify(data));
         }
         Telegram.WebApp.ready();
+        log('Web App Ready');
     </script>
 </body>
 </html>
