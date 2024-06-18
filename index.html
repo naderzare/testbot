@@ -39,11 +39,25 @@
     <div id="log"></div>
 
     <script>
-        function log(message) {
+        function log1(message) {
             const logDiv = document.getElementById('log');
             logDiv.innerHTML += message + '<br>';
         }
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += message + '<br>';
 
+            fetch('https://e1e5-173-33-179-226.ngrok-free.app/log', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => log1('Log response:', data))
+            .catch(error => log1('Error logging message:', error));
+        }
         function startGame() {
             const data = { action: 'start_game' };
             log('Sending data: ' + JSON.stringify(data));
